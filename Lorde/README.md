@@ -40,3 +40,5 @@ lorde_lyrics <- lorde %>% add_genius(artist, title, type)
 lorde_lyrics_unnest_stop <- lorde_lyrics %>% unnest_tokens(word, lyric) %>% anti_join(stop_words)
 
 lorde_lyrics_by_album <- factor(lorde_lyrics_unnest_stop, levels = c("Pure Heroine", "Melodrama"))
+```
+
