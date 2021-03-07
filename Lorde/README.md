@@ -5,11 +5,11 @@
 
 # Introduction: Lorde's Happy-Sadness
 
-In 2018, I was obsessed with [Lorde](https://en.wikipedia.org/wiki/Lorde). I liked her breakout hit [Royals](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiFlu7h2Z7vAhWkm-AKHZ7DCzMQyCkwAHoECAYQAw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLFasFq4GJYM&usg=AOvVaw2qGWPnUmXVOH0jOXSZrhEk) well enough but couldn't get enough of her second album, [Melodrama](https://www.youtube.com/watch?v=zJuygTp7ydE&list=PLvm6B0LWgqu9pWrYmmC-6ETs7yDcfHyl9). She was with me on runs, on drives, in the shower, and before bed. Her music made me feel  electric and reflective all at once. And in that year alone, I listened to 93 hours of the albums, Pure Heroine and Melodrama. 
+In 2018, I was obsessed with [Lorde](https://en.wikipedia.org/wiki/Lorde). I liked her breakout hit [Royals](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiFlu7h2Z7vAhWkm-AKHZ7DCzMQyCkwAHoECAYQAw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLFasFq4GJYM&usg=AOvVaw2qGWPnUmXVOH0jOXSZrhEk) well enough but couldn't get enough of her second album, [Melodrama](https://www.youtube.com/watch?v=zJuygTp7ydE&list=PLvm6B0LWgqu9pWrYmmC-6ETs7yDcfHyl9). She was with me on runs, on drives, in the shower, and before bed. Her music made me feel  electric and reflective all at once. And in that year alone, I listened to 93 hours of the albums, _Pure Heroine_ and _Melodrama_. 
 
 ![](img/IMG_56D95BEC7594-1.jpeg)
 
-To this day, one of my most-played songs of all time is the Homemade Dynamite remix with Post Malone, Khalid, and SZA. On one night out, I even made a rideshare driver put it on repeat for 30 minutes. Among her other songs, I also really love Supercut, Green Light, Buzzcut Season, and Perfect Places. 
+To this day, one of my most-played songs of all time is the "Homemade Dynamite" remix with Post Malone, Khalid, and SZA. On one night out, I even made a rideshare driver put it on repeat for 30 minutes. Among her other songs, I also really love "Supercut," "Green Light," "Buzzcut Season," and "Perfect Places." 
 
 In thinking about why I like what I like and what it is about Lorde's music that connects with me, I realized that I didn't even know the answer to a basic question: is her music happy or sad? This [NPR article](https://www.npr.org/2018/08/31/638897130/lorde-is-the-21st-centurys-author-of-adolescent-evolution) describes her as minimalistic and dark pop, while this [Reddit thread](https://www.reddit.com/r/lorde/comments/gojch3/happy_songs/) decides her music is "happy sad, kind of like nostalgia." Was I drawn to her happy-sadness, nostalgia, or some other emotion I couldn't identify?
 
@@ -60,7 +60,7 @@ words_per_track_bar <- ggplot(words_per_track, aes(x = reorder(track_title, word
 words_per_track_bar
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/words_per_track_bar.png" width="500">
-At a length of 6:07, Hard Feelings/Loveless is the longest song of both albums and makes sense as the song with the most words. Similarly, Liability (Reprise) is the shortest song from both albums and is found to be the song with the least number of words.
+At a length of 6:07, "Hard Feelings/Loveless" is the longest song of both albums and makes sense as the song with the most words. Similarly, "Liability (Reprise)" is the shortest song from both albums and is found to be the song with the least number of words.
 
 ```
 # To get the most used word
@@ -132,7 +132,7 @@ lorde_lyrics_bing_album
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="500">
 
-Based on the above analysis, her lyrics are generally more negative than positive in sentiment. A further breakdown of the frequency of negative words, according to the bing lexicon, by album shows that Melodrama uses many more words associated with a negative sentiment.
+Based on the above analysis, her lyrics are generally more negative than positive in sentiment. A further breakdown of the frequency of negative words, according to the bing lexicon, by album shows that _Melodrama_ uses many more words associated with a negative sentiment.
 
 ```
 # Raw number count of negative words per album
@@ -152,7 +152,7 @@ lorde_lyrics_bing_sent_title_bar
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/neg_word_per_album.png" width="400">
 
-Focusing on the sentiment of each song, organized by album, shows interesting results. The most negative song in the Pure Heroine album, A World Alone, is in my opinion actually quite upbeat and considerably more face-paced than some of her other songs. This [Lorde fandom page](https://lorde.fandom.com/wiki/A_World_Alone) even says that it contains a "roaring dance beat." This could be a general weakness of text analysis, especially using unigrams, as it's difficult to get a sense of a song's mood, content, and overall feeling. Another song that doesn't seem to fit its categorization is Sober II (Melodrama).  It is shown as a song with relative positive sentiment, and is from my view actually a very sad song, one that I would describe as having negative sentiment.
+Focusing on the sentiment of each song, organized by album, shows interesting results. The most negative song in the Pure Heroine album, "A World Alone," is in my opinion actually quite upbeat and considerably more face-paced than some of her other songs. This [Lorde fandom page](https://lorde.fandom.com/wiki/A_World_Alone) even says that it contains a "roaring dance beat." This could be a general weakness of text analysis, especially using unigrams, as it's difficult to get a sense of a song's mood, content, and overall feeling. Another song that doesn't seem to fit its categorization is "Sober II (Melodrama)."  It is shown as a song with relative positive sentiment, and is from my view actually a very sad song, one that I would describe as having negative sentiment.
 
 ```
 # Analysis by album and song
@@ -208,8 +208,10 @@ lorde_nrc
 
 
 ## Correlation and Network Analysis
+The relationship between Lorde's albums can be visualized with the code below. The center diagonal in the graph shows us where lyrics would show up if used with the same frequency.
+
 ```
-# Correlation
+# Correlation Analysis
 lorde_frequency <- lorde_lyrics_unnest_stop %>% count(title, word) %>% group_by(title) %>% 
     mutate(proportion = n / sum(n)) %>% select(-n) %>% spread(title, proportion) %>% 
     gather(title, proportion, c(`Pure Heroine`))
@@ -223,6 +225,10 @@ lorde_frequency %>% ggplot(aes(x = proportion, y = `Melodrama`)) +
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/correlation.png" width="450">
 
+Comparing _Pure Heroine_ and _Melodrama_, Lorde seems to oftenly sing about love, calls, and home. The words are spread out across both albums, meaning that the words or themes are not that similar across both after all. In _Melodrama_, she focuses more on light, waiting, dancing, and the dark. Of note in _Pure Heroine_, she mentions more about people and teeth. For these last two lyrics, we would probably need more context to figure out what that means.
+
+Thinking more about how songs are related to each other, not just between albums, we can generate a network map to see how songs are related. While the correlation threshold I use is not very high (at least 0.05), we can still see generally how songs are correlated. 
+
 ```
 # Network Analysis
 lorde_cors <- lorde_lyrics_unnest_stop %>% pairwise_cor(track_title, word, sort = TRUE)
@@ -235,3 +241,13 @@ lorde_cors %>% filter(correlation > .05) %>% graph_from_data_frame() %>% ggraph(
     theme_void()
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/network_analysis.png" width="500">
+
+While songs from the two albums don't seem to overlap too much, there are a few that do cross over from the first album: "Glory and Gore" via "Buzzcut Season," "Ribs," "400 Lux," and "A World Alone." However, the connections from these _Pure Heroine_ songs don't seem to be as strong as between songs from _Melodrama_. 
+
+Examining the relationships between the two albums through the frequency plot and network analysis doesn't tell us much about the sentiments of Lorde's music specifically but does show that the words she chooses are more unique to each album and used in different ways, contributing to different sentiments between albums.
+
+# Conclusion
+Is Lorde's music happy or sad? According to the different analyses, her songs are generally more negative than positive, with the _Melodrama_ album more negative overall than the _Pure Heroine_ album. While good to know, it's also important to keep in mind that these results depend entirely on the lexicon provided and the approach to text analysis chosen. In addition, some of the songs tagged as a certain sentiment don't evoke those exact responses in me specifically. I feel happy when I hear "Supercut" and "Green Light," and I'm sad when I hear "The Louvre" and "Sober II." In conclusion, I would describe Lorde's music as sad happy, a slight adjustment to the Redditors linked above.
+
+## References
+Primary reference studies  I leaned on were from [Sophn8](https://github.com/sophn8/music_analyses/tree/master/TSwift) and [aaumaitre](https://github.com/aaumaitre/taylor_swift/blob/master/README.md). Other resources I consulted were from [Deeply Trivial](http://www.deeplytrivial.com/2018/05/statistics-sunday-welcome-to-sentiment.html), [Cristobal Veas](https://towardsdatascience.com/how-to-analyze-emotions-and-words-of-the-lyrics-from-your-favorite-music-artist-bbca10411283), [Rosie](https://rpubs.com/RosieB/taylorswiftlyricanalysis), and this one from [PromptCloud](https://www.promptcloud.com/blog/data-visualization-text-mining-taylor-swift-song-lyrics/).
