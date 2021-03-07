@@ -110,7 +110,7 @@ lorde_lyrics_bing_album <- ggplot(lorde_lyrics_bing, aes(index, sentiment, fill 
 
 lorde_lyrics_bing_album
 ```
-<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="400">
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="500">
 
 ```
 # Raw number count of negative words per album
@@ -147,7 +147,7 @@ sent_2 <- lorde_sentiment_2 %>% ggplot(aes(reorder(track_title, sentiment), sent
 
 sent_2 + scale_fill_manual(values = c("#000000","#0000ff"))
 ```
-<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_album_and_song.png" width="400">
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_album_and_song.png" width="500">
 
 ```
 # Analysis by emotion according to dictionary chosen
@@ -177,4 +177,31 @@ lorde_bing
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_negpos.png" width="450">
 
+## Correlation and Network Analysis
 ```
+# Correlation
+lorde_frequency <- lorde_lyrics_unnest_stop %>% count(title, word) %>% group_by(title) %>% 
+    mutate(proportion = n / sum(n)) %>% select(-n) %>% spread(title, proportion) %>% 
+    gather(title, proportion, c(`Pure Heroine`))
+
+lorde_frequency %>% ggplot(aes(x = proportion, y = `Melodrama`)) + 
+    geom_abline(lty = 2) + geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) + 
+    geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) + 
+    scale_x_log10(labels = percent_format()) + scale_y_log10(labels = percent_format()) +
+    facet_wrap(~title, nrow = 1, strip.position = "bottom") + coord_equal() + theme_minimal() +
+    labs(x = "Word Frequency", y = "Melodrama", title = "Comparing Lorde's Albums")
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/correlation.png" width="450">
+
+```
+# Network Analysis
+lorde_cors <- lorde_lyrics_unnest_stop %>% pairwise_cor(track_title, word, sort = TRUE)
+
+set.seed(123)
+
+lorde_cors %>% filter(correlation > .05) %>% graph_from_data_frame() %>% ggraph(layout = "fr") + 
+    geom_edge_link(show.legend = FALSE, aes(edge_alpha = correlation)) + 
+    geom_node_point(size = 4) + geom_node_text(aes(label = name), repel = TRUE, size = 3.5) + 
+    theme_void()
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/network_analysis.png" width="500">
