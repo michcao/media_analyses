@@ -113,6 +113,24 @@ lorde_lyrics_bing_album
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="400">
 
 ```
+# Raw number count of negative words per album
+lorde_lyrics_bing_sent <- lorde_lyrics_unnest_stop %>%
+    inner_join(get_sentiments("bing"))
+
+lorde_lyrics_bing_sent_title <- lorde_lyrics_bing_sent %>%
+    subset(sentiment == "negative") %>%
+    group_by(title) %>% summarise(sentiment = n()) %>%
+    ungroup()
+
+lorde_lyrics_bing_sent_title_bar <- lorde_lyrics_bing_sent_title %>%
+    ggplot(aes(x = title, y = sentiment)) + geom_bar(stat = "identity") +
+    ggtitle("Negative Word Count Per Album") + theme_minimal() + xlab("Album")
+
+lorde_lyrics_bing_sent_title_bar
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/neg_word_per_album.png" width="400">
+
+```
 # Analysis by album and song
 lorde_sentiment_2 <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>% 
     count(title, track_title, sentiment) %>% spread(sentiment, n, fill = 0) %>%
@@ -144,7 +162,7 @@ lorde_nrc <- lorde_lyrics_unnest_stop %>%
 
 lorde_nrc
 ```
-<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_nrc_emotions.png" width="450">
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_nrc_emotions.png" width="500">
 
 ```
 # bing lexicon
