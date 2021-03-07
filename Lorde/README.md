@@ -7,7 +7,7 @@
 
 In 2018, I was obsessed with [Lorde](https://en.wikipedia.org/wiki/Lorde). I liked her breakout track [Royals](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiFlu7h2Z7vAhWkm-AKHZ7DCzMQyCkwAHoECAYQAw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DLFasFq4GJYM&usg=AOvVaw2qGWPnUmXVOH0jOXSZrhEk) well enough but couldn't get enough of her second album, [Melodrama](https://www.youtube.com/watch?v=zJuygTp7ydE&list=PLvm6B0LWgqu9pWrYmmC-6ETs7yDcfHyl9). She was with me on runs, on drives, in the shower, and before bed. Her music made me feel  electric and reflective all at once. In that year alone, I listened to 93 hours of Pure Heroine and Melodrama. 
 
-![Lorde1](img/IMG_56D95BEC7594-1.jpeg)
+![](img/IMG_56D95BEC7594-1.jpeg)
 
 To this day, one of my most-played songs of all time is the Homemade Dynamite remix with Post Malone, Khalid, and SZA. A few of my other long-time favorites are Supercut, Green Light, Buzzcut Season, and Perfect Places. 
 
@@ -56,5 +56,51 @@ words_per_track_bar <- ggplot(words_per_track, aes(x = reorder(track_title, word
 
 words_per_track_bar
 ```
-![Screenshot1](img/Screen Shot 2021-03-07 at 12.40.36 PM.png)
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/words_per_track_bar.png" width="500">
 
+```
+# To get the most used word
+lorde_lyrics_unnest_stop %>% count(word, sort = TRUE)
+```
+
+```
+# Create raw corpus from genius lyrics
+corpus_raw <- Corpus(VectorSource(lorde_lyrics$lyric))
+
+# To lowercase
+corpus <- tm_map(corpus_raw, content_transformer(tolower))
+
+# Strip whitespace
+corpus <- tm_map(corpus, stripWhitespace)
+
+# Remove punctuation
+corpus <- tm_map(corpus, removePunctuation)
+
+# Remove stopwords
+corpus <- tm_map(corpus, removeWords, stopwords("english"))
+
+# Stem the document
+corpus <- tm_map(corpus, stemDocument)
+
+# Create document term matrix
+dtm <- (DocumentTermMatrix(corpus))
+
+# Tidy dtm
+corpus_tidy <- tidy(dtm)
+    corpus_tidy %>%
+    bind_tf_idf(term, document, count) %>%
+    arrange(desc(tf_idf))
+
+cloud <- wordcloud(corpus, max.words = 100, random.order = FALSE)
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/Screen%20Shot%202021-03-07%20at%2012.55.12%20PM.png" width="400">
+
+# Sentiment Analysis
+```
+# Analysis by album and song
+lorde_sentiment_2 <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>% 
+    count(title, track_title, sentiment) %>% spread(sentiment, n, fill = 0) %>%
+    mutate(sentiment = positive - negative)
+
+lorde_sentiment_2
+```
