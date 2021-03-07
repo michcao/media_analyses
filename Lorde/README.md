@@ -75,7 +75,9 @@ Running the code above tells us that Lorde's five most-used words across both al
 - people
 - yeah
 
-While this doesn't tell us too much, it does imply a fairly consistent theme of love, or at least the mention of it.
+While this doesn't tell us too much, it does imply a fairly consistent theme of love, or at least the mention of it. 
+
+Next, I will generate a corpus and perform a few pre-processing steps (converting to lowercase, stemming, and removing whitespace, punctuation, stopwords) to create a DTM/DFM. This will allow me to generate a wordcloud and visualize her top words.
 
 ```
 # Create raw corpus from genius lyrics
@@ -110,12 +112,16 @@ cloud <- wordcloud(corpus, max.words = 100, random.order = FALSE)
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/Screen%20Shot%202021-03-07%20at%2012.55.12%20PM.png" width="400">
 
 # Sentiment Analysis
+To analyze the sentiment of each album overall, I use the [bing tidytext lexicon](https://www.tidytextmining.com/sentiment.html) to categorize words into positive and negative groups. This lexicon, as well as the NRC lexicon used later on, is based on unigrams, or single words. An alternative approach could be to use bi- or even trigrams to provide more context.
+
 ```
 # Analysis by album
+
 lorde_lyrics_bing <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>%
     count(title, index = line, sentiment) %>% spread(sentiment, n, fill = 0) %>%
     mutate(sentiment = positive - negative)
     
+# Use the bing lexicon to analyze sentiment by album
 lorde_lyrics_bing_by_album <- factor(lorde_lyrics_bing, levels = c("Pure Heroine", "Melodrama"))
 
 lorde_lyrics_bing_album <- ggplot(lorde_lyrics_bing, aes(index, sentiment, fill = title)) +
@@ -125,6 +131,8 @@ lorde_lyrics_bing_album <- ggplot(lorde_lyrics_bing, aes(index, sentiment, fill 
 lorde_lyrics_bing_album
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="500">
+
+Based on the above analysis, her lyrics are generally more negative than positive in sentiment. A further breakdown of the frequency of negative words, according to the bing lexicon, by album shows that Melodrama uses many more words associated with a negative sentiment.
 
 ```
 # Raw number count of negative words per album
@@ -144,8 +152,11 @@ lorde_lyrics_bing_sent_title_bar
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/neg_word_per_album.png" width="400">
 
+Focusing on the sentiment of each song, organized by album, shows interesting results. The most negative song in the Pure Heroine album, A World Alone, is in my opinion actually quite upbeat and considerably more face-paced than some of her other songs. This [Lorde fandom page](https://lorde.fandom.com/wiki/A_World_Alone) even says that it contains a "roaring dance beat." This could be a general weakness of text analysis, especially using unigrams, as it's difficult to get a sense of a song's mood, content, and overall feeling. Another song that doesn't seem to fit its categorization is Sober II (Melodrama).  It is shown as a song with relative positive sentiment, and is from my view actually a very sad song, one that I would describe as having negative sentiment.
+
 ```
 # Analysis by album and song
+
 lorde_sentiment_2 <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>% 
     count(title, track_title, sentiment) %>% spread(sentiment, n, fill = 0) %>%
     mutate(sentiment = positive - negative)
