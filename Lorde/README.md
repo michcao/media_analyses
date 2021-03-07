@@ -112,7 +112,7 @@ cloud <- wordcloud(corpus, max.words = 100, random.order = FALSE)
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/Screen%20Shot%202021-03-07%20at%2012.55.12%20PM.png" width="400">
 
 # Sentiment Analysis
-To analyze the sentiment of each album overall, I use the [bing tidytext lexicon](https://www.tidytextmining.com/sentiment.html) to categorize words into positive and negative groups. This lexicon, as well as the NRC lexicon used later on, is based on unigrams, or single words. An alternative approach could be to use bi- or even trigrams to provide more context.
+To analyze the sentiment of each album overall, I use the [bing tidytext lexicon](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html) to categorize words into positive and negative groups. This lexicon, as well as the NRC lexicon used later on, is based on unigrams, or single words. An alternative approach could be to use bi- or even trigrams to provide more context.
 
 ```
 # Analysis by album
@@ -174,9 +174,26 @@ sent_2 + scale_fill_manual(values = c("#000000","#0000ff"))
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_album_and_song.png" width="500">
 
+Zooming in more to see which lyrics exactly are contributing to the overall levels of positive and negative sentiment, I find that the two words "boom" and "love" are contributing very high levels of positive sentiment. And as shown earlier, these two words are used most frequently across both albums.
+
 ```
 # Analysis by emotion according to dictionary chosen
 
+# bing lexicon
+lorde_bing <- lorde_lyrics_unnest_stop %>% 
+    inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% 
+    ungroup() %>% group_by(sentiment) %>% top_n(10) %>% ungroup() %>% 
+    mutate(word = reorder(word, n)) %>% ggplot(aes(word, n, fill = sentiment)) +
+    geom_col(show.legend = FALSE) + facet_wrap(~sentiment, scales = "free_y") +
+    labs(y = "Contribution to sentiment", x = NULL) + theme_minimal() + coord_flip()
+
+lorde_bing
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_negpos.png" width="450">
+
+As mentioned earlier, another option is to use the [NRC lexicon](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), which classifies words in a binary fashion into the designated categories: anger, anticipation, disgust, fear, joy, negative, positive, sadness, surprise, and trust. Similar to the code above, we can use the NRC lexicon to examine which lyrics are contributing to sentiment by category. Possibly due to the difference in sentiment dictionary and associated methodology, the word "boom" does not appear as contributing to positive sentiment as it does using the bing lexicon. 
+
+```
 # NRC lexicon
 lorde_nrc <- lorde_lyrics_unnest_stop %>% 
     inner_join(get_sentiments("nrc")) %>% count(word, sentiment, sort = TRUE) %>% 
@@ -189,18 +206,6 @@ lorde_nrc
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_nrc_emotions.png" width="500">
 
-```
-# bing lexicon
-lorde_bing <- lorde_lyrics_unnest_stop %>% 
-    inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% 
-    ungroup() %>% group_by(sentiment) %>% top_n(10) %>% ungroup() %>% 
-    mutate(word = reorder(word, n)) %>% ggplot(aes(word, n, fill = sentiment)) +
-    geom_col(show.legend = FALSE) + facet_wrap(~sentiment, scales = "free_y") +
-    labs(y = "Contribution to sentiment", x = NULL) + theme_minimal() + coord_flip()
-
-lorde_bing
-```
-<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_negpos.png" width="450">
 
 ## Correlation and Network Analysis
 ```
