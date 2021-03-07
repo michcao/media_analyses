@@ -97,10 +97,66 @@ cloud <- wordcloud(corpus, max.words = 100, random.order = FALSE)
 
 # Sentiment Analysis
 ```
+# Analysis by album
+lorde_lyrics_bing <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>%
+    count(title, index = line, sentiment) %>% spread(sentiment, n, fill = 0) %>%
+    mutate(sentiment = positive - negative)
+    
+lorde_lyrics_bing_by_album <- factor(lorde_lyrics_bing, levels = c("Pure Heroine", "Melodrama"))
+
+lorde_lyrics_bing_album <- ggplot(lorde_lyrics_bing, aes(index, sentiment, fill = title)) +
+    geom_col(show.legend = FALSE) + facet_wrap(~title, ncol = 3, scales = "free_x") + theme_minimal() + 
+    scale_fill_manual(values = c("#0000ff", "#000000"))
+
+lorde_lyrics_bing_album
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_album.png" width="400">
+
+```
 # Analysis by album and song
 lorde_sentiment_2 <- lorde_lyrics_unnest_stop %>% inner_join(get_sentiments("bing")) %>% 
     count(title, track_title, sentiment) %>% spread(sentiment, n, fill = 0) %>%
     mutate(sentiment = positive - negative)
 
-lorde_sentiment_2
+lorde_sentiment_2$title <- factor(lorde_sentiment_2$title, levels = c("Pure Heroine", "Melodrama"))
+
+sent_2 <- lorde_sentiment_2 %>% ggplot(aes(reorder(track_title, sentiment), sentiment, fill = title)) +
+    geom_col(show.legend = FALSE) + facet_wrap(~title, ncol = 3, scales = "free") +
+    labs(x = NULL, y = "Sentiment", title = "Lorde's songs ranked by sentiment") + 
+    theme(plot.title = element_text(size = 13, hjust = 0.4, face = "bold"), 
+         axis.title.y = element_text(hjust = 0.05, size = 7), 
+         axis.title.x = element_text(size = 8)) + theme_minimal() + coord_flip() 
+
+sent_2 + scale_fill_manual(values = c("#000000","#0000ff"))
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_album_and_song.png" width="400">
+
+```
+# Analysis by emotion according to dictionary chosen
+
+# NRC lexicon
+lorde_nrc <- lorde_lyrics_unnest_stop %>% 
+    inner_join(get_sentiments("nrc")) %>% count(word, sentiment, sort = TRUE) %>% 
+    ungroup() %>% group_by(sentiment) %>% top_n(10) %>% ungroup() %>% 
+    mutate(word = reorder(word, n)) %>% ggplot(aes(word, n, fill = sentiment)) +
+    geom_col(show.legend = FALSE) + facet_wrap(~sentiment, scales = "free_y") +
+    labs(y = "Contribution to sentiment", x = NULL) + theme_minimal() + coord_flip()
+
+lorde_nrc
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_nrc_emotions.png" width="450">
+
+```
+# bing lexicon
+lorde_bing <- lorde_lyrics_unnest_stop %>% 
+    inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% 
+    ungroup() %>% group_by(sentiment) %>% top_n(10) %>% ungroup() %>% 
+    mutate(word = reorder(word, n)) %>% ggplot(aes(word, n, fill = sentiment)) +
+    geom_col(show.legend = FALSE) + facet_wrap(~sentiment, scales = "free_y") +
+    labs(y = "Contribution to sentiment", x = NULL) + theme_minimal() + coord_flip()
+
+lorde_bing
+```
+<img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/sent_bing_negpos.png" width="450">
+
 ```
