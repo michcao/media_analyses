@@ -13,7 +13,7 @@ To this day, one of my most-played songs of all time is the Homemade Dynamite re
 
 In thinking about why I like what I like and what it is about Lorde's music that connects with me, I realized that I didn't even know the answer to a basic question: is her music happy or sad? This [NPR article](https://www.npr.org/2018/08/31/638897130/lorde-is-the-21st-centurys-author-of-adolescent-evolution) describes her as minimalistic and dark pop, while this [Reddit thread](https://www.reddit.com/r/lorde/comments/gojch3/happy_songs/) decides her music is "happy sad, kind of like nostalgia." Was I drawn to her happy-sadness, nostalgia, or another emotion I couldn't yet identify?
 
-Before [Lorde's next album is released](https://www.nme.com/en_asia/news/music/lordes-third-album-title-is-inspired-by-her-trip-to-antarctica-2840657), I wanted to see if I could find an answer to this question. For this analysis, I will be using R to analyze the Pure Heroine and Melodrama albums, and ignoring her EP's for simplicity and to prevent duplication.
+I wanted to see if I could find an answer to this question before [her next album is released](https://www.nme.com/en_asia/news/music/lordes-third-album-title-is-inspired-by-her-trip-to-antarctica-2840657). For this analysis, I will be using R to analyze the Pure Heroine and Melodrama albums, and ignoring any EP's for simplicity and to prevent duplication.
 
 ## Loading Lyrics with Genius
 
@@ -41,4 +41,20 @@ lorde_lyrics_unnest_stop <- lorde_lyrics %>% unnest_tokens(word, lyric) %>% anti
 
 lorde_lyrics_by_album <- factor(lorde_lyrics_unnest_stop, levels = c("Pure Heroine", "Melodrama"))
 ```
+
+# Word Counts and Clouds
+```
+colnames(words_per_track)[colnames(words_per_track) == "length(word)"] <- "word_count"
+
+words_per_track_bar <- ggplot(words_per_track, aes(x = reorder(track_title, word_count),
+                                                  y = word_count)) + 
+                                                geom_text(aes(label = word_count), vjust = 4, size = 2.5) +
+                                                geom_bar(stat = "identity", fill = "blue") + 
+                                                ggtitle("Word Count Per Track") + 
+                                                ylab("Word Count") + xlab("Track Title") + 
+                                                theme_minimal() + coord_flip()
+
+words_per_track_bar
+```
+![Screenshot1](img/Screen Shot 2021-03-07 at 12.40.36 PM.png)
 
