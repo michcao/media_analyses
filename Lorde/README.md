@@ -61,10 +61,21 @@ words_per_track_bar
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/words_per_track_bar.png" width="500">
 At a length of 6:07, Hard Feelings/Loveless is the longest song of both albums and makes sense as the song with the most words. Similarly, Liability (Reprise) is the shortest song from both albums and is found to be the song with the least number of words.
+
 ```
 # To get the most used word
 lorde_lyrics_unnest_stop %>% count(word, sort = TRUE)
 ```
+
+Running the code above tells us that Lorde's five most-used words across both albums are:
+
+- boom
+- love
+- call
+- people
+- yeah
+
+While this doesn't tell us too much, it does imply a fairly consistent theme of love, or at least the mention of it.
 
 ```
 # Create raw corpus from genius lyrics
