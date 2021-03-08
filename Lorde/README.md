@@ -225,7 +225,7 @@ lorde_frequency %>% ggplot(aes(x = proportion, y = `Melodrama`)) +
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/correlation.png" width="450">
 
-All of the words are spread out across both albums, meaning that the words or themes are not that similar across both after all. Comparing _Pure Heroine_ and _Melodrama_, Lorde often seems to sing about love, calls, and home. In _Melodrama_, she focuses more on light, waiting, dancing, and the dark. Of note in _Pure Heroine_, she mentions more about people and teeth. For these last two lyrics, we would probably need more context to figure out what that means.
+All of the words are spread out across both albums, meaning that the words or themes are not that similar across both after all. Comparing _Pure Heroine_ and _Melodrama_, Lorde often seems to sing about love, calls, and home. In _Melodrama_, she focuses more on light, waiting, dancing, and the dark. Of note in _Pure Heroine_, she spends more of the album singing about people and teeth, possibly starting with its prominence in "Royals." For these last two lyrics, we would probably need more context to figure out what that means.
 
 Thinking more about how songs are related to each other, not just between albums, we can generate a network map to see how songs are related. While the correlation threshold I use is not very high (at least 0.05), we can still see generally how songs are correlated. 
 
