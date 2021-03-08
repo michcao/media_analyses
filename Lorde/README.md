@@ -13,7 +13,7 @@ To this day, one of my most-played songs of all time is the "Homemade Dynamite" 
 
 In thinking about why I like what I like and what it is about Lorde's music that connects with me, I realized that I didn't even know the answer to a basic question: is her music happy or sad? This [NPR article](https://www.npr.org/2018/08/31/638897130/lorde-is-the-21st-centurys-author-of-adolescent-evolution) describes her as minimalistic and dark pop, while this [Reddit thread](https://www.reddit.com/r/lorde/comments/gojch3/happy_songs/) decides her music is "happy sad, kind of like nostalgia." Was I drawn to her happy-sadness, nostalgia, or some other emotion I couldn't identify?
 
-I wanted to see if I could find an answer to this question before [her next album release](https://www.nme.com/en_asia/news/music/lordes-third-album-title-is-inspired-by-her-trip-to-antarctica-2840657). For this analysis, I will be using R to analyze the Pure Heroine and Melodrama albums, and ignoring any EP's for simplicity and to prevent duplication.
+I wanted to see if I could find an answer to this question before [her next album release](https://www.nme.com/en_asia/news/music/lordes-third-album-title-is-inspired-by-her-trip-to-antarctica-2840657). For this analysis, I will be using R to analyze the _Pure Heroine_ and _Melodrama_ albums, and ignoring any EP's for simplicity and to prevent duplication.
 
 ## Loading Song Lyrics with Genius
 First, I will load all the relevant packages and libraries needed.
