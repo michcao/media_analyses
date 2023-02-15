@@ -9,7 +9,7 @@ In 2018, I was obsessed with [Lorde](https://en.wikipedia.org/wiki/Lorde). I lik
 
 ![](img/IMG_56D95BEC7594-1.jpeg)
 
-To this day, one of my most-played songs of all time is the "Homemade Dynamite" remix with Post Malone, Khalid, and SZA. On one night out, I even made a rideshare driver put it on repeat for an hour. Among her other songs, I also really love "Supercut," "Green Light," "Buzzcut Season," and "Perfect Places." 
+To this day, one of my most-played songs of all time is the "Homemade Dynamite" remix with Post Malone, Khalid, and SZA. Once, I even made a rideshare driver play it on repeat for over an hour, singing along nonstop. Among her other songs, I'm also partial to "Supercut," "Green Light," "Buzzcut Season," and "Perfect Places." 
 
 In thinking about why I like what I like and what it is about Lorde's music that connects with me, I realized that I didn't even know the answer to a basic question: is her music happy or sad? This [NPR article](https://www.npr.org/2018/08/31/638897130/lorde-is-the-21st-centurys-author-of-adolescent-evolution) describes her as minimalistic and dark pop, while this [Reddit thread](https://www.reddit.com/r/lorde/comments/gojch3/happy_songs/) decides her music is "happy sad, kind of like nostalgia." Was I drawn to her happy-sadness, nostalgia, or some other emotion I couldn't identify?
 
