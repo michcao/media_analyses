@@ -152,7 +152,7 @@ lorde_lyrics_bing_sent_title_bar
 ```
 <img src="https://github.com/michellecow/media_analyses/blob/main/Lorde/img/neg_word_per_album.png" width="400">
 
-Focusing on the sentiment of each song, organized by album, shows interesting results. The most negative song in the Pure Heroine album, "A World Alone," is in my opinion actually quite upbeat and considerably more face-paced than some of her other songs. This [Lorde fandom page](https://lorde.fandom.com/wiki/A_World_Alone) even says that it contains a "roaring dance beat." This could be a general weakness of text analysis, especially using unigrams, as it's difficult to get a sense of a song's mood, content, and overall feeling. Another song that doesn't seem to fit its categorization is "Sober II (Melodrama)."  It is shown as a song with relative positive sentiment, and is from my view actually a very sad song, one that I would describe as having negative sentiment.
+Focusing on the sentiment of each song, organized by album, shows interesting results. The most negative song in the Pure Heroine album, "A World Alone," is in my opinion actually quite upbeat and considerably more fast-paced than some of her other songs. This [Lorde fandom page](https://lorde.fandom.com/wiki/A_World_Alone) even says that it contains a "roaring dance beat." This could be a general weakness of text analysis, especially using unigrams, as it's difficult to get a sense of a song's mood, content, and overall feeling. Another song that doesn't seem to fit its categorization is "Sober II (Melodrama)."  It is shown as a song with relative positive sentiment, and is from my view actually a very sad song, one that I would describe as having negative sentiment.
 
 ```
 # Analysis by album and song
