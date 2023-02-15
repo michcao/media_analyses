@@ -1,6 +1,6 @@
-| Title  | Written by |  Date |
-| ------------- | ------------- | ------------- |
-| Why I Love Lorde  | Michelle Cao  |  03/05/2021 |
+| Title  | Written by |  Date |   Modified On |
+| ------------- | ------------- | ------------- | ------------- |
+| Why I Love Lorde  | Michelle Cao  |  03/05/2021 |   02/14/2022  |
 
 
 # Introduction: Lorde's Happy-Sadness
